@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_percent.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acornil <acornil@student.s19.be>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/17 14:40:11 by acornil           #+#    #+#             */
+/*   Updated: 2022/02/24 12:38:06 by acornil          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ft_printf.h"
+
+void	ft_print_percent(t_print *tab)
+{
+	if (tab->width > 0 && !tab->dash)
+		ft_right_indent(tab, 1);
+	tab->length += write(1, "%", 1);
+	if (tab->width > 0 && tab->dash)
+		ft_left_indent(tab, 1);
+	ft_reset_tab(tab);	
+}
