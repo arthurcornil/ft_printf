@@ -6,16 +6,16 @@
 /*   By: acornil <acornil@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 14:46:39 by acornil           #+#    #+#             */
-/*   Updated: 2022/02/25 08:57:13 by acornil          ###   ########.fr       */
+/*   Updated: 2022/03/17 12:48:47 by acornil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int ft_get_ndigits(int num)
+int	ft_get_ndigits(int num)
 {
-	int i;
-	
+	int	i;
+
 	if (num == 0)
 		return (1);
 	i = 0;
@@ -24,14 +24,14 @@ int ft_get_ndigits(int num)
 	while (num != 0)
 	{
 		num /= 10;
-		i ++;	
+		i ++;
 	}
 	return (i);
 }
 
 int	ft_get_factor(unsigned int num)
 {
-	int factor;
+	int	factor;
 
 	factor = 1;
 	while (num >= 10)
@@ -42,7 +42,6 @@ int	ft_get_factor(unsigned int num)
 	return (factor);
 }
 
-
 void	ft_reset_tab(t_print *tab)
 {
 	tab->width = 0;
@@ -51,6 +50,6 @@ void	ft_reset_tab(t_print *tab)
 	tab->dash = 0;
 	tab->sign = 0;
 	tab->is_zero = 0;
-	tab->percentage = 0;
+	tab->hashtag = 0;
 	tab->space = 0;
 }

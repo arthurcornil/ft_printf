@@ -1,4 +1,4 @@
-/************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_indent.c                                        :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: acornil <acornil@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:54:36 by acornil           #+#    #+#             */
-/*   Updated: 2022/03/04 12:33:53 by acornil          ###   ########.fr       */
+/*   Updated: 2022/03/17 14:25:30 by acornil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	ft_format_precision(t_print *tab, int len_elem)
 {
-	if (tab->sign)
-		tab->length += write(1, "-", 1);
+	if (tab->sign == 2)
+		write(1, "-", 1);
+	if (tab->sign == 2 && tab->precision > len_elem && !tab->is_zero)
+		tab->length ++;
+	else if (tab->sign == 1)
+		tab->length += write(1, "+", 1);
 	while (tab->precision > len_elem)
 	{
 		tab->length += write(1, "0", 1);
@@ -23,13 +27,12 @@ void	ft_format_precision(t_print *tab, int len_elem)
 	}
 }
 
-void	ft_right_indent(t_print *tab, int len_elem)
+void	ft_right_indent(t_print *tab, int len)
 {
-	int width = tab->width;
+	int	width;
 
-	if (tab->precision == -1 || !tab->is_num)
-		tab->precision = 0;
-	while (width > tab->precision && width > len_elem)
+	width = tab->width;
+	while (width > len)
 	{
 		if (!tab->is_zero)
 			tab->length += write(1, " ", 1);
@@ -37,15 +40,14 @@ void	ft_right_indent(t_print *tab, int len_elem)
 			tab->length += write(1, "0", 1);
 		width --;
 	}
-
-	if (tab->is_num)
-		ft_format_precision(tab, len_elem);
 }
 
-void	ft_left_indent(t_print *tab, int len_elem)
+void	ft_left_indent(t_print *tab, int len)
 {
-	int width = tab->width;
-	while (width - len_elem > 0)
+	int	width;
+
+	width = tab->width;
+	while (width - len > 0)
 	{
 		tab->length += write(1, " ", 1);
 		width --;

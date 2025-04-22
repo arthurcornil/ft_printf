@@ -4,13 +4,20 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stdarg.h>
+# include <stdio.h>
 
 typedef struct s_print
 {
 	va_list	args;
 	int		width;
+	int		precision;
 	bool	is_num;
+	bool	dash;
 	int		length;
+	int		sign;
+	bool	is_zero;
+	bool	hashtag;
+	bool	space;
 }	t_print;
 
 int		ft_printf(const char *format, ...);
@@ -30,7 +37,6 @@ int		ft_get_ndigits(int num);
 int		ft_get_factor(unsigned int num);
 void	ft_reset_tab(t_print *tab);
 void	ft_format_precision(t_print *tab, int len_elem);
-t_print	*ft_init_tab(t_print *tab);
 
 
 #endif

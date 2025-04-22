@@ -6,7 +6,7 @@
 /*   By: acornil <acornil@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 14:40:11 by acornil           #+#    #+#             */
-/*   Updated: 2022/02/24 12:38:06 by acornil          ###   ########.fr       */
+/*   Updated: 2022/03/17 13:23:46 by acornil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	ft_print_percent(t_print *tab)
 	tab->length += write(1, "%", 1);
 	if (tab->width > 0 && tab->dash)
 		ft_left_indent(tab, 1);
-	ft_reset_tab(tab);	
+	ft_reset_tab(tab);
 }

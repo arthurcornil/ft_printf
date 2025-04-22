@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   ft_print_char_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 16:42:51 by arcornil          #+#    #+#             */
-/*   Updated: 2025/04/18 17:36:44 by arcornil         ###   ########.fr       */
+/*   Created: 2025/04/22 10:02:53 by arcornil          #+#    #+#             */
+/*   Updated: 2025/04/22 10:03:25 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf_bonus.h"
 
-void	*ft_malloc(size_t count)
+void	ft_print_char(t_print *tab)
 {
-	size_t	*alloc_bytes;
+	char	a;
 
-	alloc_bytes = (size_t *)malloc(sizeof(size_t) + count);
-	if (!alloc_bytes)
-		return (NULL);
-	*alloc_bytes = count;
-	return ((void *)(alloc_bytes + 1));
+	a = va_arg(tab->args, int);
+	if (tab->width > 0 && !tab->dash)
+		ft_right_indent(tab, 1);
+	tab->length += write(1, &a, 1);
+	if (tab->width > 0 && tab->dash)
+		ft_left_indent(tab, 1);
+	ft_reset_tab(tab);
 }

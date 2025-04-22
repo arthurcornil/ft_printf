@@ -6,18 +6,18 @@
 /*   By: acornil <acornil@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 11:59:48 by acornil           #+#    #+#             */
-/*   Updated: 2022/03/03 14:28:38 by acornil          ###   ########.fr       */
+/*   Updated: 2022/03/17 13:25:02 by acornil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	ft_ptr_to_hex(size_t num, char *base)
+static void	ft_ptr_to_hex(unsigned long num, char *base)
 {
-	size_t lengthbase;
+	unsigned long	lengthbase;
 
 	lengthbase = 16;
-	if (num > lengthbase)
+	if (num >= lengthbase)
 	{
 		ft_ptr_to_hex(num / lengthbase, base);
 		num %= lengthbase;
@@ -25,14 +25,14 @@ static void	ft_ptr_to_hex(size_t num, char *base)
 	ft_putchar_fd(*(base + num), 1);
 }
 
-unsigned int	ft_get_ndigits_ptr_to_hex(size_t ptr)
+unsigned int	ft_get_ndigits_ptr_to_hex(unsigned long ptr)
 {
-	int ndigits;
+	int	ndigits;
 
 	ndigits = 0;
 	if (ptr == 0)
 		return (1);
-	while (ndigits > 0)
+	while (ptr > 0)
 	{
 		ptr /= 16;
 		ndigits ++;
@@ -42,17 +42,20 @@ unsigned int	ft_get_ndigits_ptr_to_hex(size_t ptr)
 
 void	ft_print_ptr(t_print *tab)
 {
-	size_t	ptr;
-	int	ndigits_hex;
+	unsigned long	ptr;
+	int				ndigits_hex;
 
-	ptr = va_arg(tab->args, size_t);
+	ptr = va_arg(tab->args, unsigned long);
 	ndigits_hex = ft_get_ndigits_ptr_to_hex(ptr);
 	ndigits_hex += 2;
+	if (tab->precision == 0 && ptr == 0)
+		ndigits_hex --;
 	if (tab->width > 0 && !tab->dash)
 		ft_right_indent(tab, ndigits_hex);
-	tab->length += ndigits_hex;
 	write(1, "0x", 2);
-	ft_ptr_to_hex(ptr, "0123456789abcdef");
+	if (!(tab->precision == 0 && ptr == 0))
+		ft_ptr_to_hex(ptr, "0123456789abcdef");
+	tab->length += ndigits_hex;
 	if (tab->width > 0 && tab->dash)
 		ft_left_indent(tab, ndigits_hex);
 	ft_reset_tab(tab);

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   ft_init_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 16:42:51 by arcornil          #+#    #+#             */
-/*   Updated: 2025/04/18 17:36:44 by arcornil         ###   ########.fr       */
+/*   Created: 2025/04/22 09:59:23 by arcornil          #+#    #+#             */
+/*   Updated: 2025/04/22 10:01:04 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-void	*ft_malloc(size_t count)
+t_print	*ft_init_tab(t_print *tab)
 {
-	size_t	*alloc_bytes;
-
-	alloc_bytes = (size_t *)malloc(sizeof(size_t) + count);
-	if (!alloc_bytes)
-		return (NULL);
-	*alloc_bytes = count;
-	return ((void *)(alloc_bytes + 1));
+	tab->width = 0;
+	tab->is_num = 0;
+	tab->length = 0;
+	return (tab);
 }
+
