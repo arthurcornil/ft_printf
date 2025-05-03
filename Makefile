@@ -33,7 +33,7 @@ BSRCS=$(SRCS_DIR)ft_fts_bonus.c\
 	  $(SRCS_DIR)ft_print_str_bonus.c\
 	  $(SRCS_DIR)ft_init_tab_bonus.c\
 	  $(SRCS_DIR)ft_print_uint_bonus.c\
-	  $(SRCS_DIR)ft_printf.c\
+	  $(SRCS_DIR)ft_printf_bonus.c\
 
 OBJS=${SRCS:.c=.o}
 BOBJS=${BSRCS:.c=.o}
@@ -59,7 +59,9 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJS) $(BOBJS) 
+bonus: $(BOBJS) 
+	@make -C $(LIBFT_DIR)
+	@cp $(LIBFT_DIR)/libft.a ./libftprintf.a
 	ar rc $(NAME) $?
 
 .PHONY: fclean clean re

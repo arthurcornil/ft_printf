@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_print_ptr_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acornil <acornil@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 11:59:48 by acornil           #+#    #+#             */
-/*   Updated: 2022/03/17 13:25:02 by acornil          ###   ########.fr       */
+/*   Updated: 2025/05/03 12:57:34 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,16 @@ void	ft_print_ptr(t_print *tab)
 		ndigits_hex --;
 	if (tab->width > 0 && !tab->dash)
 		ft_right_indent(tab, ndigits_hex);
-	write(1, "0x", 2);
-	if (!(tab->precision == 0 && ptr == 0))
+	if (ptr == 0)
+	{
+		ft_putstr_fd("(nil)", 1);
+		ndigits_hex = 5;
+	}
+	else if (tab->precision != 0 && ptr != 0)
+	{
+		write(1, "0x", 2);
 		ft_ptr_to_hex(ptr, "0123456789abcdef");
+	}
 	tab->length += ndigits_hex;
 	if (tab->width > 0 && tab->dash)
 		ft_left_indent(tab, ndigits_hex);
