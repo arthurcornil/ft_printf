@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 static void	ft_ptr_to_hex(unsigned long num, char *base)
 {
@@ -46,18 +46,17 @@ void	ft_print_ptr(t_print *tab)
 	int				ndigits_hex;
 
 	ptr = va_arg(tab->args, unsigned long);
-	if (ptr != 0)
-	{
-		ndigits_hex = ft_get_ndigits_ptr_to_hex(ptr);
-		ndigits_hex += 2;
-		write(1, "0x", 2);
+	ndigits_hex = ft_get_ndigits_ptr_to_hex(ptr);
+	ndigits_hex += 2;
+	if (tab->precision == 0 && ptr == 0)
+		ndigits_hex --;
+	if (tab->width > 0 && !tab->dash)
+		ft_right_indent(tab, ndigits_hex);
+	write(1, "0x", 2);
+	if (!(tab->precision == 0 && ptr == 0))
 		ft_ptr_to_hex(ptr, "0123456789abcdef");
-	}
-	else
-	{
-		ndigits_hex = 5;
-		ft_putstr_fd("(nil)", 1);
-	}
 	tab->length += ndigits_hex;
+	if (tab->width > 0 && tab->dash)
+		ft_left_indent(tab, ndigits_hex);
 	ft_reset_tab(tab);
 }

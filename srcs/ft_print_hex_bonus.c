@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 static void	ft_print_num(unsigned int num, char *base)
 {
@@ -43,21 +43,29 @@ static int	ft_get_ndigits_hex(unsigned int num)
 void	ft_print_lowhex(t_print *tab)
 {
 	unsigned int	num;
+	int				ndigits;
+	int				len;
 
 	num = va_arg(tab->args, unsigned int);
-	tab->length += ft_get_ndigits_hex(num);
+	ndigits = ft_get_ndigits_hex(num);
+	len = ndigits;
 	tab->is_num = true;
-	ft_print_num(num, "0123456789abcdef");
+	if (num != 0)
+		ft_print_num(num, "0123456789abcdef");
 	ft_reset_tab(tab);
 }
 
 void	ft_print_uphex(t_print *tab)
 {
 	unsigned int	num;
+	int				ndigits;
+	int				len;
 
 	num = va_arg(tab->args, unsigned int);
-	tab->length += ft_get_ndigits_hex(num);
+	ndigits = ft_get_ndigits_hex(num);
+	len = ndigits;
 	tab->is_num = true;
-	ft_print_num(num, "0123456789ABCDEF");
+	if (num != 0)
+		ft_print_num(num, "0123456789ABCDEF");
 	ft_reset_tab(tab);
 }

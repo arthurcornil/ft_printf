@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acornil <acornil@student.s19.be>           +#+  +:+       +#+        */
+/*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 14:40:54 by acornil           #+#    #+#             */
-/*   Updated: 2022/03/10 14:35:47 by acornil          ###   ########.fr       */
+/*   Created: 2025/04/21 18:19:10 by arcornil          #+#    #+#             */
+/*   Updated: 2025/04/22 10:00:16 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_print_str(t_print *tab)
+int	ft_printf(const char *format, ...)
 {
-	char	*str;
-	int		len;
+	t_print	tab;
 	int		i;
 
-	str = va_arg(tab->args, char *);
-	if (!str)
-		str = "(null)";
-	len = ft_strlen(str);
-	tab->length += len;
+	ft_init_tab(&tab);
+	va_start(tab.args, format);
 	i = 0;
-	while (i < len)
+	while (format[i])
 	{
-		ft_putchar_fd(*str, 1);
-		str ++;
+		if (format[i] == '%')
+			i = ft_get_format(&tab, format, i + 1);
+		else
+			tab.length += write(1, (format + i), 1);
 		i ++;
 	}
-	ft_reset_tab(tab);
+	va_end(tab.args);
+	return (tab.length);
 }

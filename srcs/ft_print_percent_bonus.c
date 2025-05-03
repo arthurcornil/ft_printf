@@ -10,10 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 void	ft_print_percent(t_print *tab)
 {
+	if (tab->width > 0 && !tab->dash)
+		ft_right_indent(tab, 1);
 	tab->length += write(1, "%", 1);
+	if (tab->width > 0 && tab->dash)
+		ft_left_indent(tab, 1);
 	ft_reset_tab(tab);
 }

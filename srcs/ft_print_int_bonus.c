@@ -71,14 +71,8 @@ void	ft_print_int(t_print *tab)
 	ft_manage_zero(tab);
 	len = ft_format_indent(tab, ndigits, len, &num);
 	ft_manage_flags(tab, num);
-	if (!(tab->precision == 0 && num == 0) && num != -2147483648)
+	if (!(tab->precision == 0 && num == 0))
 		ft_putnbr_fd(num, 1);
-	else if (num == -2147483648)
-	{
-		tab->sign = 2;
-		ft_format_precision(tab, 10);
-		write(1, "2147483648", 10);
-	}
 	if (tab->width > 0 && tab->dash)
 		ft_left_indent(tab, len);
 	ft_reset_tab(tab);

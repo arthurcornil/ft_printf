@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 void	ft_print_str(t_print *tab)
 {
@@ -21,7 +21,13 @@ void	ft_print_str(t_print *tab)
 	str = va_arg(tab->args, char *);
 	if (!str)
 		str = "(null)";
+	if (tab->precision == 0)
+		str = "";
 	len = ft_strlen(str);
+	if (tab->precision > 0 && tab->precision < len)
+		len = tab->precision;
+	if (tab->width > 0 && !tab->dash)
+		ft_right_indent(tab, len);
 	tab->length += len;
 	i = 0;
 	while (i < len)
@@ -30,5 +36,7 @@ void	ft_print_str(t_print *tab)
 		str ++;
 		i ++;
 	}
+	if (tab->width > 0 && tab->dash)
+		ft_left_indent(tab, len);
 	ft_reset_tab(tab);
 }

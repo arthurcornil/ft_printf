@@ -1,10 +1,12 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # include "../libft/libft.h"
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <unistd.h>
 
 typedef struct s_print
 {
@@ -37,6 +39,7 @@ int		ft_get_ndigits(int num);
 int		ft_get_factor(unsigned int num);
 void	ft_reset_tab(t_print *tab);
 void	ft_format_precision(t_print *tab, int len_elem);
+t_print	*ft_init_tab(t_print *tab);
 
 
 #endif

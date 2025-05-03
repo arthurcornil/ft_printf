@@ -8,73 +8,58 @@ LIBFT_DIR=./libft/
 
 SRCS_DIR=./srcs/
 
-LIBFT_SRCS=$(LIBFT_DIR)ft_atoi.c\
-           $(LIBFT_DIR)ft_bzero.c\
-           $(LIBFT_DIR)ft_calloc.c\
-           $(LIBFT_DIR)ft_isalnum.c\
-           $(LIBFT_DIR)ft_isalpha.c\
-           $(LIBFT_DIR)ft_isascii.c\
-           $(LIBFT_DIR)ft_isdigit.c\
-           $(LIBFT_DIR)ft_isprint.c\
-           $(LIBFT_DIR)ft_memchr.c\
-           $(LIBFT_DIR)ft_memcmp.c\
-           $(LIBFT_DIR)ft_memcpy.c\
-           $(LIBFT_DIR)ft_memset.c\
-           $(LIBFT_DIR)ft_memmove.c\
-           $(LIBFT_DIR)ft_split.c\
-           $(LIBFT_DIR)ft_strdup.c\
-           $(LIBFT_DIR)ft_strlcat.c\
-           $(LIBFT_DIR)ft_strlcpy.c\
-           $(LIBFT_DIR)ft_strlen.c\
-           $(LIBFT_DIR)ft_strncmp.c\
-           $(LIBFT_DIR)ft_strnstr.c\
-           $(LIBFT_DIR)ft_strchr.c\
-           $(LIBFT_DIR)ft_strtrim.c\
-           $(LIBFT_DIR)ft_strrchr.c\
-           $(LIBFT_DIR)ft_substr.c\
-           $(LIBFT_DIR)ft_tolower.c\
-           $(LIBFT_DIR)ft_toupper.c\
-           $(LIBFT_DIR)ft_putchar_fd.c\
-           $(LIBFT_DIR)ft_putstr_fd.c\
-           $(LIBFT_DIR)ft_putendl_fd.c\
-           $(LIBFT_DIR)ft_putnbr_fd.c\
-           $(LIBFT_DIR)ft_strjoin.c\
-           $(LIBFT_DIR)ft_itoa.c\
-           $(LIBFT_DIR)ft_strmapi.c\
-           $(LIBFT_DIR)ft_striteri.c\
-           $(LIBFT_DIR)ft_malloc.c\
-           $(LIBFT_DIR)ft_realloc.c\
-           $(LIBFT_DIR)ft_free.c
+LIBFT_DIR=./libft/
 
 SRCS=$(SRCS_DIR)ft_fts.c\
+	 $(SRCS_DIR)ft_init_tab.c\
 	 $(SRCS_DIR)ft_get_format.c\
-	 $(SRCS_DIR)ft_indent.c\
 	 $(SRCS_DIR)ft_print_char.c\
+	 $(SRCS_DIR)ft_print_uint.c\
+	 $(SRCS_DIR)ft_print_str.c\
 	 $(SRCS_DIR)ft_print_hex.c\
+	 $(SRCS_DIR)ft_print_ptr.c\
 	 $(SRCS_DIR)ft_print_int.c\
 	 $(SRCS_DIR)ft_print_percent.c\
-	 $(SRCS_DIR)ft_print_ptr.c\
-	 $(SRCS_DIR)ft_print_str.c\
-	 $(SRCS_DIR)ft_print_uint.c\
-	 $(SRCS_DIR)ft_printf.c\
+	 $(SRCS_DIR)ft_printf.c
 
+BSRCS=$(SRCS_DIR)ft_fts_bonus.c\
+	  $(SRCS_DIR)ft_get_format_bonus.c\
+	  $(SRCS_DIR)ft_indent_bonus.c\
+	  $(SRCS_DIR)ft_print_char_bonus.c\
+	  $(SRCS_DIR)ft_print_hex_bonus.c\
+	  $(SRCS_DIR)ft_print_int_bonus.c\
+	  $(SRCS_DIR)ft_print_percent_bonus.c\
+	  $(SRCS_DIR)ft_print_ptr_bonus.c\
+	  $(SRCS_DIR)ft_print_str_bonus.c\
+	  $(SRCS_DIR)ft_init_tab_bonus.c\
+	  $(SRCS_DIR)ft_print_uint_bonus.c\
+	  $(SRCS_DIR)ft_printf.c\
 
-LIBFT_OBJS=${LIBFT_SRCS:.c=.o}
 OBJS=${SRCS:.c=.o}
+BOBJS=${BSRCS:.c=.o}
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 NAME=libftprintf.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_OBJS)
+$(NAME): $(OBJS) 
+	@make -C $(LIBFT_DIR)
+	@cp $(LIBFT_DIR)/libft.a ./libftprintf.a
 	ar rc $(NAME) $?
 
 clean: 
-	$(RM) $(OBJS) $(LIBFT_OBJS)
+	$(RM) $(OBJS) $(BOBJS)
+	@make fclean -C $(LIBFT_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+bonus: $(OBJS) $(BOBJS) 
+	ar rc $(NAME) $?
 
 .PHONY: fclean clean re

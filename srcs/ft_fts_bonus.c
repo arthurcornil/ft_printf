@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/ft_printf_bonus.h"
 
 int	ft_get_ndigits(int num)
 {
@@ -45,5 +45,11 @@ unsigned int	ft_get_factor(unsigned int num)
 void	ft_reset_tab(t_print *tab)
 {
 	tab->width = 0;
+	tab->precision = -1;
 	tab->is_num = 0;
+	tab->dash = 0;
+	tab->sign = 0;
+	tab->is_zero = 0;
+	tab->hashtag = 0;
+	tab->space = 0;
 }
