@@ -51,7 +51,7 @@ void	ft_print_ptr(t_print *tab)
 		ft_putstr_fd("(nil)", 1);
 		return ;
 	}
-	tab->length = ft_get_ndigits_ptr_to_hex(ptr) + 2;
+	tab->length += ft_get_ndigits_ptr_to_hex(ptr) + 2;
 	write(1, "0x", 2);
 	ft_ptr_to_hex(ptr, "0123456789abcdef");
 }
