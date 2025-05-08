@@ -21,7 +21,7 @@
 typedef struct s_print
 {
 	va_list		args;
-	ssize_t		length;
+	int			length;
 }	t_print;
 
 int				ft_printf(const char *format, ...);

@@ -20,15 +20,14 @@ int	ft_get_value(t_print *tab, const char *str, int pos)
 			tab->width = tab->width * 10 + str[pos] - '0';
 		else if (tab->precision > -1 || tab->is_zero)
 			tab->precision = tab->precision * 10 + str[pos] - '0';
-		if (ft_isdigit(str[pos + 1]))
-			pos ++;
-		else
+		if (!ft_isdigit(str[pos + 1]))
 			break ;
+		pos ++;
 	}
 	return (pos);
 }
 
-int	ft_look_for_flags(t_print *tab, const char *str, int pos)
+static int	ft_parse_flags(t_print *tab, const char *str, int pos)
 {
 	while (!(str[pos] == 'c' || str[pos] == 's' || str[pos] == 'p'
 			|| str[pos] == 'd' || str[pos] == 'i' || str[pos] == 'u'
@@ -39,6 +38,7 @@ int	ft_look_for_flags(t_print *tab, const char *str, int pos)
 		else if (str[pos] == '-')
 			tab->dash = 1;
 		else if (str[pos] == '+')
+			//TODO: CHECK IF int is necessary -> bool might be more appropriate
 			tab->sign = 1;
 		else if (str[pos] == '0' && !ft_isdigit(str[pos - 1])
 			&& tab->precision == -1)
@@ -55,7 +55,7 @@ int	ft_look_for_flags(t_print *tab, const char *str, int pos)
 
 int	ft_get_format(t_print *tab, const char *str, int pos)
 {
-	pos = ft_look_for_flags(tab, str, pos);
+	pos = ft_parse_flags(tab, str, pos);
 	if (tab->is_zero && tab->width == 0)
 		tab->is_zero = 0;
 	if (str[pos] == 'c')
