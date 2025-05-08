@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/08 10:24:08 by arcornil          #+#    #+#             */
+/*   Updated: 2025/05/08 10:24:55 by arcornil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "../libft/libft.h"
@@ -8,10 +20,8 @@
 
 typedef struct s_print
 {
-	va_list	args;
-	int		width;
-	bool	is_num;
-	int		length;
+	va_list		args;
+	ssize_t		length;
 }	t_print;
 
 int				ft_printf(const char *format, ...);
@@ -24,8 +34,7 @@ void			ft_print_int(t_print *tab);
 void			ft_print_uint(t_print *tab);
 void			ft_print_str(t_print *tab);
 void			ft_print_ptr(t_print *tab);
-void			ft_print_lowhex(t_print *tab);
-void			ft_print_uphex(t_print *tab);
+void			ft_print_hex(t_print *tab, bool uppercase);
 void			ft_print_percent(t_print *tab);
 int				ft_get_ndigits(int num);
 unsigned int	ft_get_factor(unsigned int num);

@@ -11,15 +11,14 @@ SRCS_DIR=./srcs/
 LIBFT_DIR=./libft/
 
 SRCS=$(SRCS_DIR)ft_fts.c\
-	 $(SRCS_DIR)ft_init_tab.c\
 	 $(SRCS_DIR)ft_get_format.c\
 	 $(SRCS_DIR)ft_print_char.c\
 	 $(SRCS_DIR)ft_print_uint.c\
-	 $(SRCS_DIR)ft_print_str.c\
-	 $(SRCS_DIR)ft_print_hex.c\
 	 $(SRCS_DIR)ft_print_ptr.c\
+	 $(SRCS_DIR)ft_print_hex.c\
 	 $(SRCS_DIR)ft_print_int.c\
 	 $(SRCS_DIR)ft_print_percent.c\
+	 $(SRCS_DIR)ft_print_str.c\
 	 $(SRCS_DIR)ft_printf.c
 
 BSRCS=$(SRCS_DIR)ft_fts_bonus.c\

@@ -40,24 +40,16 @@ static int	ft_get_ndigits_hex(unsigned int num)
 	return (ndigits);
 }
 
-void	ft_print_lowhex(t_print *tab)
+void	ft_print_hex(t_print *tab, bool uppercase)
 {
 	unsigned int	num;
+	char			*base;
 
+	if (uppercase)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
 	num = va_arg(tab->args, unsigned int);
 	tab->length += ft_get_ndigits_hex(num);
-	tab->is_num = true;
-	ft_print_num(num, "0123456789abcdef");
-	ft_reset_tab(tab);
-}
-
-void	ft_print_uphex(t_print *tab)
-{
-	unsigned int	num;
-
-	num = va_arg(tab->args, unsigned int);
-	tab->length += ft_get_ndigits_hex(num);
-	tab->is_num = true;
-	ft_print_num(num, "0123456789ABCDEF");
-	ft_reset_tab(tab);
+	ft_print_num(num, base);
 }

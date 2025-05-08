@@ -15,5 +15,4 @@
 void	ft_print_percent(t_print *tab)
 {
 	tab->length += write(1, "%", 1);
-	ft_reset_tab(tab);
 }

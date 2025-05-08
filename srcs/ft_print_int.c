@@ -18,7 +18,5 @@ void	ft_print_int(t_print *tab)
 
 	num = va_arg(tab->args, int);
 	tab->length += ft_get_ndigits(num);
-	tab->is_num = true;
 	ft_putnbr_fd(num, 1);
-	ft_reset_tab(tab);
 }

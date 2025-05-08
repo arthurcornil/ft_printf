@@ -41,9 +41,3 @@ unsigned int	ft_get_factor(unsigned int num)
 	}
 	return (factor);
 }
-
-void	ft_reset_tab(t_print *tab)
-{
-	tab->width = 0;
-	tab->is_num = 0;
-}

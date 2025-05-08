@@ -32,7 +32,5 @@ void	ft_print_uint(t_print *tab)
 	unsigned int	num;
 
 	num = va_arg(tab->args, unsigned int);
-	tab->is_num = true;
 	ft_putuint(num, tab);
-	ft_reset_tab(tab);
 }

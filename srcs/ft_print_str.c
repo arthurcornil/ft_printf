@@ -16,19 +16,11 @@ void	ft_print_str(t_print *tab)
 {
 	char	*str;
 	int		len;
-	int		i;
 
 	str = va_arg(tab->args, char *);
 	if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
 	tab->length += len;
-	i = 0;
-	while (i < len)
-	{
-		ft_putchar_fd(*str, 1);
-		str ++;
-		i ++;
-	}
-	ft_reset_tab(tab);
+	write(1, str, len);
 }

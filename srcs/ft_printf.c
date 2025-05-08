@@ -6,7 +6,7 @@
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 18:19:10 by arcornil          #+#    #+#             */
-/*   Updated: 2025/05/03 12:16:49 by arcornil         ###   ########.fr       */
+/*   Updated: 2025/05/08 10:27:27 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_printf(const char *format, ...)
 	t_print	tab;
 	int		i;
 
-	ft_init_tab(&tab);
+	tab.length = 0;
 	va_start(tab.args, format);
 	i = 0;
 	while (format[i])
