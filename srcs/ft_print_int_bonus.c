@@ -6,7 +6,7 @@
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:04:14 by arcornil          #+#    #+#             */
-/*   Updated: 2025/04/22 10:04:15 by arcornil         ###   ########.fr       */
+/*   Updated: 2025/05/11 15:47:14 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_manage_flags(t_print *tab, int num)
 
 static void	ft_manage_zero(t_print *tab)
 {
-	if (tab->is_zero && (tab->width < 1 ^ tab->precision < 0))
+	if (tab->is_zero && ((tab->width < 1) != (tab->precision < 0)))
 	{
 		tab->precision = tab->width;
 		tab->width = 0;
