@@ -6,7 +6,7 @@
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:50:34 by arcornil          #+#    #+#             */
-/*   Updated: 2025/04/22 10:06:11 by arcornil         ###   ########.fr       */
+/*   Updated: 2025/05/11 13:00:59 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_get_format(t_print *tab, const char *str, int pos)
 	else if (str[pos] == 'u')
 		ft_print_uint(tab);
 	else if (str[pos] == '%')
-		//ft_print_percent(tab);
 		tab->length += write(1, "%", 1);
 	else if (str[pos] == 'x')
 		ft_print_hex(tab, false);

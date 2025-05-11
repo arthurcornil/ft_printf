@@ -17,7 +17,6 @@ SRCS=$(SRCS_DIR)ft_fts.c\
 	 $(SRCS_DIR)ft_print_ptr.c\
 	 $(SRCS_DIR)ft_print_hex.c\
 	 $(SRCS_DIR)ft_print_int.c\
-	 $(SRCS_DIR)ft_print_percent.c\
 	 $(SRCS_DIR)ft_print_str.c\
 	 $(SRCS_DIR)ft_printf.c
 
