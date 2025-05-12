@@ -38,7 +38,6 @@ static int	ft_parse_flags(t_print *tab, const char *str, int pos)
 		else if (str[pos] == '-')
 			tab->dash = 1;
 		else if (str[pos] == '+')
-			//TODO: CHECK IF int is necessary -> bool might be more appropriate
 			tab->sign = 1;
 		else if (str[pos] == '0' && !ft_isdigit(str[pos - 1])
 			&& tab->precision == -1)

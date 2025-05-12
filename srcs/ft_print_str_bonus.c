@@ -32,8 +32,7 @@ void	ft_print_str(t_print *tab)
 	i = 0;
 	while (i < len)
 	{
-		ft_putchar_fd(*str, 1);
-		str ++;
+		ft_putchar_fd(str[i], 1);
 		i ++;
 	}
 	if (tab->width > 0 && tab->dash)
