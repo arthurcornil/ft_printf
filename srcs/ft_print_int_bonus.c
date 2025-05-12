@@ -31,7 +31,7 @@ static void	ft_manage_zero(t_print *tab)
 		tab->is_zero = false;
 }
 
-static int	ft_format_indent(t_print *tab, int ndigits, int len, int *num)
+static int	ft_format_indent(t_print *tab, int ndigits, int len, long int *num)
 {
 	if (tab->precision >= ndigits)
 	{
@@ -43,7 +43,7 @@ static int	ft_format_indent(t_print *tab, int ndigits, int len, int *num)
 		len --;
 	if (tab->width > 0 && !tab->dash)
 		ft_right_indent(tab, len);
-	if ((tab->precision > 0 || tab->width > 0) && *num != -2147483648)
+	if (tab->precision > 0 || tab->width > 0)
 	{
 		if (*num < 0)
 		{	
@@ -60,12 +60,12 @@ static int	ft_format_indent(t_print *tab, int ndigits, int len, int *num)
 
 void	ft_print_int(t_print *tab)
 {
-	int	num;
-	int	ndigits;
-	int	len;
+	long int	num;
+	int			ndigits;
+	int			len;
 
-	num = va_arg(tab->args, int);
-	ndigits = ft_get_ndigits(num);
+	num = (long int)va_arg(tab->args, int);
+	ndigits = ft_get_ndigits((int)num);
 	len = ndigits;
 	tab->is_num = true;
 	ft_manage_zero(tab);

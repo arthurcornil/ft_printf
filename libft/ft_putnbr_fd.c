@@ -12,40 +12,45 @@
 
 #include "libft.h"
 
-static int	find_factor(int n)
+int	ft_get_floored(int nb)
 {
-	int	factor;
+	int	digit_counter;
 
-	factor = 1;
-	while (n >= 10)
+	digit_counter = 1;
+	while (nb / 10 != 0)
 	{
-		n /= 10;
-		factor *= 10;
+		nb /= 10;
+		digit_counter *= 10;
 	}
-	return (factor);
+	return (digit_counter);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putdigit(int d, int fd)
 {
-	int		factor;
-	char	digit;
+	char	c;
 
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
+	c = d + '0';
+	write (fd, &c, 1);
+}
+
+void	ft_putnbr_fd(long int nb, int fd)
+{
+	long int	number;
+	int			floored_nb;
+	int			curr_digit;
+
+	number = nb;
+	if (number < 0)
 	{
 		write(fd, "-", 1);
-		n *= -1;
+		number *= -1;
 	}
-	factor = find_factor(n);
-	while (factor != 0)
+	floored_nb = ft_get_floored(number);
+	while (floored_nb > 0)
 	{
-		digit = (n / factor) + '0';
-		write(fd, &digit, 1);
-		n %= factor;
-		factor /= 10;
+		curr_digit = number / floored_nb;
+		ft_putdigit(curr_digit, fd);
+		number %= floored_nb;
+		floored_nb /= 10;
 	}
 }
