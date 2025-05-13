@@ -25,4 +25,3 @@ t_print	*ft_init_tab(t_print *tab)
 	tab->space = 0;
 	return (tab);
 }
-

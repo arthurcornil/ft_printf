@@ -57,7 +57,7 @@ static int	ft_format_indent(t_print *tab, int ndigits, int len, unsigned int n)
 	if (tab->precision > 0)
 	{
 		if (n < 0)
-		{	
+		{
 			tab->sign = 1;
 			n = -n;
 			if (tab->precision > 0 && !tab->is_zero)

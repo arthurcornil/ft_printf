@@ -52,5 +52,4 @@ void				ft_reset_tab(t_print *tab);
 void				ft_format_precision(t_print *tab, int len_elem);
 t_print				*ft_init_tab(t_print *tab);
 
-
 #endif

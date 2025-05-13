@@ -68,6 +68,7 @@ void	ft_print_lowhex(t_print *tab)
 	unsigned int	num;
 	int				ndigits;
 	int				len;
+
 	num = va_arg(tab->args, unsigned int);
 	ndigits = ft_get_ndigits_hex(num);
 	if (tab->hashtag && num != 0)
@@ -96,6 +97,7 @@ void	ft_print_uphex(t_print *tab)
 	unsigned int	num;
 	int				ndigits;
 	int				len;
+
 	num = va_arg(tab->args, unsigned int);
 	ndigits = ft_get_ndigits_hex(num);
 	if (tab->hashtag && num != 0)
