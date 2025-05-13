@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf_bonus.h"
 
-int	ft_get_value(t_print *tab, const char *str, int pos)
+static int	ft_get_value(t_print *tab, const char *str, int pos)
 {
 	while (ft_isdigit(str[pos]))
 	{

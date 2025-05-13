@@ -25,7 +25,7 @@ static void	ft_ptr_to_hex(unsigned long num, char *base)
 	ft_putchar_fd(*(base + num), 1);
 }
 
-unsigned int	ft_get_ndigits_ptr_to_hex(unsigned long ptr)
+static unsigned int	ft_get_ndigits_ptr_to_hex(unsigned long ptr)
 {
 	int	ndigits;
 
