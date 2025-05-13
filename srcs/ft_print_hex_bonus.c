@@ -40,8 +40,11 @@ static int	ft_get_ndigits_hex(unsigned int num)
 	return (ndigits);
 }
 
-static int	ft_format_indent(t_print *tab, int ndigit, int len, unsigned int n)
+static int	ft_format_indent(t_print *tab, int ndigit, unsigned int n)
 {
+	int	len;
+
+	len = ndigit;
 	if (tab->precision > ndigit)
 		len = tab->precision;
 	if (tab->precision == 0 && n == 0)
@@ -63,7 +66,7 @@ static int	ft_format_indent(t_print *tab, int ndigit, int len, unsigned int n)
 	return (len);
 }
 
-void	ft_print_lowhex(t_print *tab)
+static void	ft_print_hex_with_base(t_print *tab, char *base, char *suffix)
 {
 	unsigned int	num;
 	int				ndigits;
@@ -73,7 +76,6 @@ void	ft_print_lowhex(t_print *tab)
 	ndigits = ft_get_ndigits_hex(num);
 	if (tab->hashtag && num != 0)
 		ndigits += 2;
-	len = ndigits;
 	tab->is_num = true;
 	if (tab->is_zero && (tab->width < 1 || tab->precision < 0))
 	{
@@ -82,41 +84,22 @@ void	ft_print_lowhex(t_print *tab)
 	}
 	else if (tab->is_zero && tab->width > 0 && tab->precision > -1)
 		tab->is_zero = false;
-	len = ft_format_indent(tab, ndigits, len, num);
+	len = ft_format_indent(tab, ndigits, num);
 	if (tab->hashtag && num != 0)
-		write(1, "0x", 2);
+		write(1, suffix, 2);
 	if (!(tab->precision == 0 && num == 0))
-		ft_print_num(num, "0123456789abcdef");
+		ft_print_num(num, base);
 	if (tab->width > 0 && tab->dash)
 		ft_left_indent(tab, len);
 	ft_reset_tab(tab);
 }
 
-void	ft_print_uphex(t_print *tab)
+void	ft_print_hex(t_print *tab, bool uppercase)
 {
-	unsigned int	num;
-	int				ndigits;
-	int				len;
-
-	num = va_arg(tab->args, unsigned int);
-	ndigits = ft_get_ndigits_hex(num);
-	if (tab->hashtag && num != 0)
-		ndigits += 2;
-	len = ndigits;
-	tab->is_num = true;
-	if (tab->is_zero && (tab->width < 1 || tab->precision < 0))
+	if (uppercase)
 	{
-		tab->precision = tab->width;
-		tab->width = 0;
+		ft_print_hex_with_base(tab, "0123456789ABCDEF", "0X");
+		return ;
 	}
-	else if (tab->is_zero && tab->width > 0 && tab->precision > -1)
-		tab->is_zero = false;
-	len = ft_format_indent(tab, ndigits, len, num);
-	if (tab->hashtag && num != 0)
-		write(1, "0X", 2);
-	if (!(tab->precision == 0 && num == 0))
-		ft_print_num(num, "0123456789ABCDEF");
-	if (tab->width > 0 && tab->dash)
-		ft_left_indent(tab, len);
-	ft_reset_tab(tab);
+	ft_print_hex_with_base(tab, "0123456789abcdef", "0x");
 }

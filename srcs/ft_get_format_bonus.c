@@ -68,9 +68,9 @@ int	ft_get_format(t_print *tab, const char *str, int pos)
 	else if (str[pos] == '%')
 		ft_print_percent(tab);
 	else if (str[pos] == 'x')
-		ft_print_lowhex(tab);
+		ft_print_hex(tab, false);
 	else if (str[pos] == 'X')
-		ft_print_uphex(tab);
+		ft_print_hex(tab, true);
 	else if (str[pos] == 'p')
 		ft_print_ptr(tab);
 	return (pos);
